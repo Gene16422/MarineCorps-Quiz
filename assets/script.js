@@ -63,6 +63,7 @@ var currentIndex = 0
 //var incorrectAnswers = document.querySelector("");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var scoreContainer = document.querySelector(".score");
 var score = 0;
 var isWin = false;
 var timer;
@@ -78,6 +79,8 @@ function displayQuestion(){
    currentIndex>4
  ){
    alert("GameOver");
+   recordScore();
+   recordUserInitials();
    return
  };
     var questionEl = document.getElementById("question");
@@ -136,14 +139,32 @@ function startTimer() {
 //track and record score (timerCount)
 
 function recordScore() {
-    score.textContent = scoreCounter;
-    localStorage.setItem("scoreCount", scoreCounter);
+    var displayScoreEl = document.createElement("h2");
+    displayScoreEl.textContent = `correct answers: ${score}`;
+    scoreContainer.appendChild(displayScoreEl);
+    localStorage.setItem("scoreCount", score);
   }
   
   // Updates userInitials on screen and sets userInitials to local storage
   function recordUserInitials() {
-    Initials.textContent = userInitials;
-    localStorage.setItem("userInitials", userInitials);
+    var formEl = document.createElement("form");
+    var userInitialsEl = document.createElement("h2");  
+    userInitialsEl.innerHTML = "Enter Your Initials: <input name='initials' type='text'/>";
+    formEl.appendChild(userInitialsEl);
+    var submitEl = document.createElement("div");
+    submitEl.innerHTML = "<button type='submit'>submit</button>";
+    formEl.appendChild(submitEl);
+    scoreContainer.appendChild(formEl);
+    submitEl.addEventListener("click", 
+      submitInitials
+    )
+    
+}
+function submitInitials() {
+event.preventDefault();
+var initialsInput = document.querySelector("input[name='initials']").value;
+console.log(initialsInput);
+localStorage.setItem("userInitials", initialsInput);
 }
 startButton.addEventListener("click", function (){
     playgame()

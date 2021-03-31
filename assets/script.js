@@ -63,7 +63,7 @@ var currentIndex = 0
 //var incorrectAnswers = document.querySelector("");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
-var score =0;
+var score = 0;
 var isWin = false;
 var timer;
 var timerCount;
@@ -94,33 +94,9 @@ function displayQuestion(){
 
     var answer4 = document.getElementById("answer4");
     answer4.textContent = question[currentIndex].answer.d;
-
   
-       
-
 }
-
-//function compare(event){
-
-   // var clickedButton = event.target.id
-   // var correctAnswer = question[currentIndex].correctAnswer;
-   // console.log("clicked")
-   // console.log(event.target.id, correctAnswer);
-//     if (clickedButton == correctAnswer){
-//         alert("Correct");
-//         score++
-
-//         console.log(score);
-//     }else{
-//         alert("Incorrect");
-//     };
-
-    
-// }
-
-
 //Play the game
-
 
 function playgame() {
     alert("working");
@@ -185,6 +161,7 @@ answerButtons.forEach(function (ansBtn) {
         console.log("You got it right")
         currentIndex++
         displayQuestion()
+        score++
       } else {
         console.log("WRONG")
         currentIndex++
